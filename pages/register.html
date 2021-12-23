@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <style>
+        *{
+            box-sizing: border-box;
+            font-family: sans-serif;
+        }
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(70deg, orange, white);
+
+        }
+        form{
+            width: 70vh;
+            height: 70vh;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            flex-direction: column;
+            background:linear-gradient(60deg,rgba(255, 255, 255, 0.582),rgba(255, 166, 0, 0.5));
+            border-radius: 10px;
+            
+        }
+      
+        input[type=text],input[type=password]{
+            border: none;
+	        border-bottom: 2px solid #d4d3d1;
+	        background: none;
+	        padding: 10px;
+	        padding-left: 24px;
+	        font-weight: 700;
+	        width: 75%;
+	        transition: .2s;
+        }
+        input[type=text]:active,input[type=password]:active,
+        input[type=text]:hover,input[type=password]:hover,
+        input[type=text]:focus,input[type=password]:focus{
+            outline: none;
+	        border-bottom-color: orange;
+        }
+        .butt{
+            background: rgba(255, 255, 255, 0.952);
+	        font-size: 1em;
+	        padding: .7em .7em;
+	        border-radius: 26px;
+	        border: 1px solid #e8e0d3;
+	        text-transform: uppercase;
+            font-weight: 700;
+	        display: flex;
+	        align-items: center;
+	        width: 80%;
+	        color: #000000;
+	        box-shadow: 0px 2px 2px #8b4f00;
+	        cursor: pointer;
+	        transition: .2s;
+           
+        }
+        
+        .regbut{
+            text-decoration: none;
+            display: flex;
+            justify-content: center;
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body>
+    <form onsubmit="return pwdMatch(this)" action="/register" method="post">
+        <input type="text" name="name"  placeholder="Username">
+        <span id="nameEr"></span>
+        <input type="text" name="email" placeholder="Email" >
+        <span id="emailEr"></span>
+        <input type="password" name="password" placeholder="Password">
+        <span id="passEr"></span>
+        <input type="password" name="password2" placeholder="Password again">
+        <span id="pass2Er"></span>
+        <input type="submit" class="butt" value="Sign up">
+        <a href="/" class="butt regbut">Login</a>
+    </form>
+    <script>
+      
+            // is same or not.
+            function pwdMatch(form) {
+                username = form.name.value;
+                email = form.email.value;
+                password = form.password.value;
+                password2 = form.password2.value;
+
+                //If name not entered
+                if(username == ''){
+                    document.getElementById('nameEr').innerHTML = "Please enter username";
+                    return false;
+                }else{
+                    document.getElementById('nameEr').innerHTML = "";
+                }
+                //If email not entered
+                if(email == ''){
+                    document.getElementById('emailEr').innerHTML = "Please enter email";
+                    return false;
+                }else{
+                    document.getElementById('emailEr').innerHTML = "";
+                }
+                // If password not entered
+                if (password == ''){
+                    document.getElementById('passEr').innerHTML = "Password cannot be emty!";
+                    return false;
+                }else{
+                    document.getElementById('passEr').innerHTML = "";
+                }
+                // If confirm password not entered
+                if (password2 == ''){
+                    document.getElementById('pass2Er').innerHTML = "Please enter confirm password!";
+                    return false;
+                }else{
+                    document.getElementById('pass2Er').innerHTML = "";
+                }
+                // If Not same return False.    
+                if (password !== password2){
+                    document.getElementById("pass2Er").innerHTML = "Password did not match!";
+                    return false;
+                }else{
+                    document.getElementById('pass2Er').innerHTML = "";
+                }
+            }
+        
+    </script>
+</body>
+</html>
