@@ -14,7 +14,7 @@ const users = require('./routes/users')
 db.connect;
 
 app.use(sessions({
-    secret: 'secret',
+    secret: process.env.SECRET,
     resave: false,
     saveUninitialized: true,
     cookie: {maxAge: 60000}
